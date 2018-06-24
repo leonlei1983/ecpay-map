@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Store Map</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        function SelectMap() {
+            $("#_form_map").submit();
+        }
+
+        function ReceiveData(param) {
+            $("#_to_map").text('');
+            $.each(param.split('&'), function(idx, item) {
+                t = unescape(item).split('=')
+                fmt_item = t[0] + " := " + t[1] + "<br/>";
+                $("#_to_map").append(fmt_item);
+            });
+            $("#_to_map").append("<br/><br/>");
+        }
+        </script>
+    </head>
+    <body>
+        <form id="_form_map" action="{{ url }}" target="_blank" method="post">
+            {% for k, v in payload.items() %}
+            <input type="hidden" name="{{ k }}" id="{{ k }}" value="{{ v }}" />
+            {% endfor %}
+        </form>
+        <a href="javascript:SelectMap();">Store Map</a><br/><br/>
+        <div id="_to_map"></div>
+    </body>
+</html>

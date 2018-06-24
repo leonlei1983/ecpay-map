@@ -1,0 +1,7 @@
+<h2>MapReceiveAdapt</h2>
+<script type='text/javascript' language='javascript'>
+if (window.opener != null && !window.opener.closed) {
+    var val = window.opener.ReceiveData('{{ store_info | safe }}');
+    window.close();
+}
+</script>
